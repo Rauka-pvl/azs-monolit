@@ -1,0 +1,19 @@
+.grades {
+    justify-content: space-evenly;
+    display: flex;
+    margin: 2em 0;
+}
+
+.pin-cal button {
+    font-size: 3em;
+}
+
+.center {
+    text-align: center;
+}
+
+.b_star:focus {
+    outline: none;
+    box-shadow: none;
+    border: 0;
+}

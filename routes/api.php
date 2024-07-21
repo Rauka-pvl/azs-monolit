@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TabController;
 use App\Http\Controllers\AZSContorller;
+use App\Http\Controllers\ReportController;
 
 /*
 |--------------------------------------------------------------------------

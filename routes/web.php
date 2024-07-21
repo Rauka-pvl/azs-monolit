@@ -95,5 +95,7 @@ Route::get('/AZS', [AZSContorller::class, 'index'])->name('AZS')->middleware('ch
 Route::get('/staff', [StaffController::class, 'index'])->name('staff')->middleware('check.role:1');
 Route::get('/staff/review/{staff}', [StaffController::class, 'review'])->name('review')->middleware('check.role:1');
 Route::get('/report', [ReportController::class, 'index'])->name('report')->middleware('check.role:1');
+Route::post('/reportPDF', [ReportController::class, 'report'])->name('reportPDF')->middleware('check.role:1');
+
 
 

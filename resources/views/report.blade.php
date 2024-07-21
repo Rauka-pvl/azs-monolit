@@ -20,21 +20,22 @@
                 Отчеты
             </div>
             <div class="card-body">
-                <h2 class="mb-4">Формирование отчета</h2>
-                <form id="reportForm">
+                <form action="/reportPDF" method="POST">
+                    @csrf
+                    <h2 class="mb-4">Формирование отчета</h2>
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="startDate">Дата начала</label>
-                            <input type="date" class="form-control" id="startDate" required>
+                            <input type="date" class="form-control" name="startDate" id="startDate" required>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="endDate">Дата окончания</label>
-                            <input type="date" class="form-control" id="endDate" required>
+                            <input type="date" class="form-control" name="endDate" id="endDate" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="azs">АЗС</label>
-                        <select class="form-control" id="azs">
+                        <select class="form-control" id="azs" name="azs">
                             <option value="">Все АЗС</option>
                             @foreach (App\Models\azs::where('delete', '=', '0')->get() as $azs)
                                 <option value="{{ $azs->id }}">
@@ -45,7 +46,7 @@
                     </div>
                     <div class="form-group">
                         <label for="employeeSelect">Сотрудники</label>
-                        <select class="form-control" id="employeeSelect" multiple>
+                        <select class="form-control" id="employeeSelect" name="staff[]" multiple>
                             @foreach (App\Models\User::where('delete', '=', null)->get() as $azs)
                                 <option value="{{ $azs->id }}">
                                     {{ $azs->name }}
@@ -53,7 +54,7 @@
                             @endforeach
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary">Сформировать отчет</button>
+                    <button class="btn btn-primary">Сформировать отчет</button>
                 </form>
             </div>
         </div>

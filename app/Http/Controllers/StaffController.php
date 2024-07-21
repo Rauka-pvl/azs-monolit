@@ -77,14 +77,14 @@ class StaffController extends Controller
         $azsId = $request->azs_id;
 
         if ($azsId) {
-            $employees = User::select('users.*')->join('azs_to_user', 'azs_to_user.user_id', '=', 'users.id')->where('azs_id', $azsId)->get();
+            $employees = User::select('users.*')->join('azs_to_user', 'azs_to_user.user_id', '=', 'users.id')->join('azs', 'azs.id', '=', 'azs_to_user.azs_id')->where('users.delete', '=', null)->where('azs.delete', '=', '0')->where('azs_id', $azsId)->get();
         } else {
-            $employees = User::all();
+            $employees = User::select('users.*')->join('azs_to_user', 'azs_to_user.user_id', '=', 'users.id')->join('azs', 'azs.id', '=', 'azs_to_user.azs_id')->where('users.delete', '=', null)->where('azs.delete', '=', '0')->get();
         }
 
         return response()->json([
             'employees' => $employees,
-            'allEmployees' => User::all()
+            'allEmployees' => User::select('users.*')->join('azs_to_user', 'azs_to_user.user_id', '=', 'users.id')->join('azs', 'azs.id', '=', 'azs_to_user.azs_id')->where('users.delete', '=', null)->where('azs.delete', '=', '0')->get()
         ]);
     }
 

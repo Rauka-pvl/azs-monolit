@@ -40,7 +40,7 @@ class ReportController extends Controller
                 }
                 $users_azs = $users_azs->get();
                 foreach ($users_azs as $key => $azz) {
-                    $users_azs[$key]['avg_grade'] = round(grade::where('azs_id', '=', $azz->id)->whereBetween('created_at', [$startDate, $endDate])->avg('grade'), 1);
+                    $users_azs[$key]['avg_grade'] = round(grade::where('azs_id', '=', $az->id)->where('user_id', '=', $azz->id)->whereBetween('created_at', [$startDate, $endDate])->avg('grade'), 1);
                 }
 
                 $azs[$az['name']] = $users_azs;
@@ -57,7 +57,7 @@ class ReportController extends Controller
                 }
                 $users_azs = $users_azs->get();
                 foreach ($users_azs as $key => $azz) {
-                    $users_azs[$key]['avg_grade'] = round(grade::where('azs_id', '=', $azz->id)->whereBetween('created_at', [$startDate, $endDate])->avg('grade'), 1);
+                    $users_azs[$key]['avg_grade'] = round(grade::where('azs_id', '=', $az->id)->where('user_id', '=', $azz->id)->whereBetween('created_at', [$startDate, $endDate])->avg('grade'), 1);
                 }
 
                 $azs[$az['name']] = $users_azs;
